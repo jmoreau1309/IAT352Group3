@@ -63,6 +63,20 @@ function is_logged_in() {
 	return isset($_SESSION['valid_user']);
 }
 
+function is_in_watchlist($code) {
+    global $db;
+    if (isset($_SESSION['valid_user'])) {
+        $query = "SELECT COUNT(*) FROM watchlist WHERE artID=? AND title=?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ss',$code, $_SESSION['valid_user']);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        return ($stmt->fetch() && $count > 0);
+    }
+    return false;
+}
+
+
 function sanitizeInput($var) {
     $var = mysqli_real_escape_string($_SESSION['connection'], $var);
     $var = htmlentities($var);

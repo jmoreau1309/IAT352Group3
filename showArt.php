@@ -7,8 +7,8 @@ no_SSL();
 $query_str = "SELECT title, artist, yearRangeStart, yearRangeEnd FROM artpieces";
 $res = $db->query($query_str);
 
-function format_model_name_as_link($title,$name,$page) {
-	echo "<a href=\"$page?productCode=$title\">$title,$name</a>";
+function format_model_name_as_link($title,$artID,$page) {
+	echo "<a href=\"$page?artID=$artID\">$title,$artID</a>";
 	}
 
 include('header.php');

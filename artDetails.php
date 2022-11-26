@@ -2,6 +2,8 @@
 include('included_functions.php');
 no_SSL();
 
+$code = trim($_GET['artID']);
+@$msg = trim($_GET['message']);
 
 $query_str = "SELECT * 
               FROM artpieces
@@ -10,7 +12,7 @@ $query_str = "SELECT *
 $stmt = $db->prepare($query_str);
 $stmt->bind_param('s',$code);
 $stmt->execute();
-//$stmt->bind_result($title,$artist,$yearRangeStart,$yearRangeEnd,$genre,$description);
+$stmt->bind_result($title,$artist,$yearRangeStart,$yearRangeEnd,$genre,$description);;
 
 include('header.php');
 
