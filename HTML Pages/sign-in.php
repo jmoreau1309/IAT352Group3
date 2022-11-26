@@ -1,6 +1,7 @@
 <?php
  require('header.php');
- require("./data/db.php");
+ require(dirname(dirname(__FILE__)) . '/data/db.php');
+ require(dirname(dirname(__FILE__)) . '/assets/functions.php');
  require_ssl();
  session_start();
 ?>
