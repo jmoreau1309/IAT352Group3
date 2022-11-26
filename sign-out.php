@@ -21,7 +21,6 @@
       unset($_SESSION['user']);
       session_destroy();
       if(isset($_SESSION["return_to_url"]))) header("Location: http://".$_SERVER['HTTP_HOST'].$_SESSION["return_to_url"]);
-      else header("Location: http://".$_SERVER['HTTP_HOST']."index.php");
     ?>
   </body>
 </html>
