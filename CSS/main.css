@@ -1,3 +1,11 @@
+/*default font*/
+body{
+  width: 100%;
+  font-family: 'Arial',sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #333;
