@@ -147,6 +147,8 @@ CREATE TABLE `blogposts` (
   `time_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `blogposts` (`blog_id`, `content`, `contributor_id`, `time_created`) VALUES
+
 -- --------------------------------------------------------
 
 --
