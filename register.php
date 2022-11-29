@@ -67,7 +67,7 @@
     }
   ?>
   <head>
-    <title>All Models</title>
+    <title>Register</title>
     <link href="./CSS/main.css" rel="stylesheet">
   </head>
 
