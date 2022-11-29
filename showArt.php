@@ -10,7 +10,10 @@
 	}
 ?>
 <html>
-	<?php include('header.php'); ?>
+	<?php
+		include('header.php');
+		$_SESSION["return_to_url"] = $_SERVER['REQUEST_URI'];
+	?>
 	<head>
 		<title> All Art Pieces </title>
 		<link href="./CSS/main.css" rel="stylesheet">

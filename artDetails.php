@@ -17,6 +17,7 @@ $code = trim($_GET['artID']);
     $stmt->bind_result($art_id, $artist, $yearRangeStart, $yearRangeEnd, $title, $genre, $description, $filename);
 
     include('header.php');
+    $_SESSION["return_to_url"] = $_SERVER['REQUEST_URI'];
   ?>
   <head>
     <title>Art Piece Details</title>
@@ -37,6 +38,10 @@ $code = trim($_GET['artID']);
 
       $db->close();
       ?>
+      <form method="post" action="writeBlog.php">
+        <input type="hidden" name="artID" value="<?php echo $art_id; ?>"/>
+        <input type="submit" value="Blog About This Piece!">
+      </form>
     </div>
   </body>
 </html>
