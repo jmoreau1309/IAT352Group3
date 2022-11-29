@@ -19,7 +19,7 @@ $code = trim($_GET['artID']);
     include('header.php');
   ?>
   <head>
-    <title><?php echo $title; ?></title>
+    <title>Art Piece Details</title>
     <link href="./CSS/main.css" rel="stylesheet">
   </head>
 

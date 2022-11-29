@@ -12,7 +12,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
       //check for valid user
       //check if user already exists
-      $users_query = "SELECT users.password FROM users WHERE email=?";
+      $users_query = "SELECT users.password, users.username FROM users WHERE email=?";
 
       //prepare statement to prevent sql injection
       $users_statement = mysqli_prepare($connection, $users_query); //prepare statement
@@ -21,12 +21,14 @@
       $users_result = mysqli_stmt_get_result($users_statement); //get query result
 
       if(mysqli_num_rows($users_result) != 0) {
-        //check input password against database password
-        $pass_hash = hash('sha256', $_POST["pass"]); //turn current password into hash
-        $db_pass = mysqli_fetch_assoc($users_result)["password"];
+        while($r = mysqli_fetch_assoc($users_result)){
+          //check input password against database password
+          $pass_hash = hash('sha256', $_POST["pass"]); //turn current password into hash
+          $db_pass = $r["password"];
 
-        if($pass_hash == $db_pass) $_SESSION['user'] = $_POST["user"];
-        else $msg = "Incorrect password. Please try again.";
+          if($pass_hash == $db_pass) $_SESSION['user'] = $r["username"];
+          else $msg = "Incorrect password. Please try again.";
+        }
       }
       else $msg = "Invalid user. Please try again.";
     }

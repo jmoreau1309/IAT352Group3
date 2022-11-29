@@ -16,10 +16,10 @@
 
   <body>
     <?php
-      include('assets/header.php'); //header
       unset($_SESSION['user']);
       session_destroy();
-      if(isset($_SESSION["return_to_url"]))) header("Location: http://".$_SERVER['HTTP_HOST'].$_SESSION["return_to_url"]);
+      if(isset($_SESSION["return_to_url"])) header("Location: http://".$_SERVER['HTTP_HOST'].$_SESSION["return_to_url"]);
+      else header("Location: index.php");
     ?>
   </body>
 </html>

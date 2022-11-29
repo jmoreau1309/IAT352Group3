@@ -48,7 +48,7 @@
         //insert new user into database
         $insert_query = "INSERT INTO users (username, email, password) VALUES(?, ?, ?)";
         $statement = mysqli_prepare($connection, $insert_query); //prepare statement
-        mysqli_stmt_bind_param($statement, 'sss', $email, $user, $pass);
+        mysqli_stmt_bind_param($statement, 'sss', $user, $email, $pass);
 
         //create password hash
         $pass_hash = hash('sha256', $_POST["pass"]);
