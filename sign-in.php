@@ -3,7 +3,6 @@
  require('./data/db.php');
  require('./assets/functions.php');
  require_ssl();
- session_start();
 ?>
 <html>
   <?php
