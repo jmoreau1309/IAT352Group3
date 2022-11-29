@@ -6,6 +6,21 @@ body{
   margin: 0;
 }
 
+/*limit height of image*/
+.display-img{
+  height: 400px;
+}
+
+.display-img img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.content{
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
 /* Add a black background color to the top navigation */
 .header {
   overflow: hidden;

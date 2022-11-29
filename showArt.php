@@ -4,12 +4,12 @@
 include('./assets/functions.php');
 no_SSL();
 
-$query_str = "SELECT title, artist, yearRangeStart, yearRangeEnd FROM artpieces";
+$query_str = "SELECT title, art_id, artist, yearRangeStart, yearRangeEnd FROM artpieces";
 $res = $db->query($query_str);
 
-function format_model_name_as_link($title,$artID,$page) {
+function format_model_name_as_link($title, $artID, $page) {
 	echo "<a href=\"$page?artID=$artID\">$title,$artID</a>";
-	}
+}
 
 include('header.php');
 
@@ -17,9 +17,9 @@ include('header.php');
 echo "<h2>All Art</h2>";
 
 echo "<ul>";
-while ($row = $res->fetch_row()) {
+while ($row = $res->fetch_assoc()) {
 	echo "<li>";
-	format_model_name_as_link($row[0], $row[1],"artDetails.php");
+	format_model_name_as_link($row['title'], $row['art_id'],"artDetails.php");
 	echo "</li>\n";
 };
 echo "</ul>";
