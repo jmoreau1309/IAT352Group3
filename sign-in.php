@@ -7,16 +7,13 @@
 <html>
   <?php
   //code largely recycled from Herman's A4
-    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); //connect to db
-    if(mysqli_connect_errno()) die(mysqli_connect_error()); //test for successful connection
-
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
       //check for valid user
       //check if user already exists
       $users_query = "SELECT users.password, users.username FROM users WHERE email=?";
 
       //prepare statement to prevent sql injection
-      $users_statement = mysqli_prepare($connection, $users_query); //prepare statement
+      $users_statement = mysqli_prepare($db, $users_query); //prepare statement
       mysqli_stmt_bind_param($users_statement, 's', $_POST["user"]);
       mysqli_stmt_execute($users_statement); //execute statement
       $users_result = mysqli_stmt_get_result($users_statement); //get query result
