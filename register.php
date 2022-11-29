@@ -6,6 +6,7 @@
 ?>
 <html>
   <?php
+    //code largely recycled from Herman's A4
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); //connect to db
     if(mysqli_connect_errno()) die(mysqli_connect_error()); //test for successful connection
 
