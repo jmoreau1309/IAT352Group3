@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 05:08 AM
+-- Generation Time: Nov 29, 2022 at 04:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -142,12 +142,12 @@ INSERT INTO `artpieces` (`art_id`, `artist`, `yearRangeStart`, `yearRangeEnd`, `
 
 CREATE TABLE `blogposts` (
   `blog_id` int(11) NOT NULL,
+  `title` varchar(120) NOT NULL,
+  `art_id` int(11) NOT NULL,
   `content` mediumtext NOT NULL,
   `contributor_id` int(11) NOT NULL,
   `time_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `blogposts` (`blog_id`, `content`, `contributor_id`, `time_created`) VALUES
 
 -- --------------------------------------------------------
 
@@ -160,7 +160,7 @@ CREATE TABLE `comments` (
   `blog_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `content` mediumtext NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `time_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -175,6 +175,13 @@ CREATE TABLE `users` (
   `username` varchar(64) NOT NULL,
   `password` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `email`, `username`, `password`) VALUES
+(1, 'johndoe@johndoe.com', 'johndoe', 'c2713b62c903791bdefc5a6a99df04d4330de491bbc7a0ca6a5007337e4a6028');
 
 --
 -- Indexes for dumped tables
@@ -198,7 +205,8 @@ ALTER TABLE `artpieces`
 --
 ALTER TABLE `blogposts`
   ADD PRIMARY KEY (`blog_id`),
-  ADD KEY `contributor` (`contributor_id`);
+  ADD KEY `contributor` (`contributor_id`),
+  ADD KEY `art_id` (`art_id`);
 
 --
 -- Indexes for table `comments`
@@ -246,7 +254,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -262,6 +270,7 @@ ALTER TABLE `admins`
 -- Constraints for table `blogposts`
 --
 ALTER TABLE `blogposts`
+  ADD CONSTRAINT `art_id` FOREIGN KEY (`art_id`) REFERENCES `artpieces` (`art_id`),
   ADD CONSTRAINT `contributor` FOREIGN KEY (`contributor_id`) REFERENCES `users` (`user_id`);
 
 --
