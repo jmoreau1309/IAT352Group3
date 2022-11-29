@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="content">
+      <!--Featured Art/Blog?-->
     </div>
   </body>
 </html>

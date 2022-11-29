@@ -3,8 +3,9 @@
 <div class="header">
   <a href="index.php" class="logo">Art Blogger</a>
   <div class="header-right">
-    <a class="active" href="showArt.php">Main Feed</a>
+    <a class="active" href="showArt.php">Main Art Feed</a>
     <a href="#genres">Art Genres</a>
+    <a href="blogFeed.php">Blog Feed</a>
   </div>
 		<?php
 		if (isset($_SESSION['user']))
