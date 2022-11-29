@@ -1,7 +1,7 @@
 <?php
 //require('header.php');
 
-include('included_functions.php');
+include('./assets/functions.php');
 no_SSL();
 
 $query_str = "SELECT title, artist, yearRangeStart, yearRangeEnd FROM artpieces";
