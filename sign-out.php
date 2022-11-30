@@ -3,13 +3,8 @@
  require('./data/db.php');
  require('./assets/functions.php');
  require_ssl();
- session_start();
 ?>
 <html>
-  <?php
-    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); //connect to db
-    if(mysqli_connect_errno()) die(mysqli_connect_error()); //test for successful connection
-  ?>
   <head>
     <title>Sign Out</title>
     <link href="./CSS/main.css" rel="stylesheet">
@@ -17,10 +12,10 @@
 
   <body>
     <?php
-      include('assets/header.php'); //header
       unset($_SESSION['user']);
       session_destroy();
-      if(isset($_SESSION["return_to_url"]))) header("Location: http://".$_SERVER['HTTP_HOST'].$_SESSION["return_to_url"]);
+      if(isset($_SESSION["return_to_url"])) header("Location: http://".$_SERVER['HTTP_HOST'].$_SESSION["return_to_url"]);
+      else header("Location: index.php");
     ?>
   </body>
 </html>

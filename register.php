@@ -3,18 +3,15 @@
  require('./data/db.php');
  require('./assets/functions.php');
  require_ssl();
- session_start();
 ?>
 <html>
   <?php
-    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); //connect to db
-    if(mysqli_connect_errno()) die(mysqli_connect_error()); //test for successful connection
-
+    //code largely recycled from Herman's A4
     if($_SERVER['REQUEST_METHOD'] == 'POST') {//if input fields are POSTed
       //check for valid entry
       if(isset($_POST["username"]) && isset($_POST["email"])
         && isset($_POST["pass"]) && isset($_POST["check_pass"])){
-        if($_POST["pass"] == $_POST["check_pass"]) checkRegistration($connection, $msg);
+        if($_POST["pass"] == $_POST["check_pass"]) checkRegistration($db, $msg);
         else $msg = "Passwords do not match. Please try again."; //error case when password fields don't match
       }
       //error cases for unentered fields
@@ -24,12 +21,12 @@
       else $msg = "Registration failed. Please try again."; //other undetectable cases
     }
 
-    function checkRegistration($connection, &$msg){
+    function checkRegistration($db, &$msg){
       //check if email already exists
       $email_query = "SELECT users.email FROM users WHERE email=?";
 
       //prepare statement to prevent sql injection
-      $email_statement = mysqli_prepare($connection, $email_query); //prepare statement
+      $email_statement = mysqli_prepare($db, $email_query); //prepare statement
       mysqli_stmt_bind_param($email_statement, 's', $_POST["email"]);
       mysqli_stmt_execute($email_statement); //execute statement
       $email_result = mysqli_stmt_get_result($email_statement); //get query result
@@ -38,7 +35,7 @@
       $users_query = "SELECT users.username FROM users WHERE username=?";
 
       //prepare statement to prevent sql injection
-      $users_statement = mysqli_prepare($connection, $users_query); //prepare statement
+      $users_statement = mysqli_prepare($db, $users_query); //prepare statement
       mysqli_stmt_bind_param($users_statement, 's', $_POST["username"]);
       mysqli_stmt_execute($users_statement); //execute statement
       $users_result = mysqli_stmt_get_result($users_statement); //get query result
@@ -48,8 +45,8 @@
       else{
         //insert new user into database
         $insert_query = "INSERT INTO users (username, email, password) VALUES(?, ?, ?)";
-        $statement = mysqli_prepare($connection, $insert_query); //prepare statement
-        mysqli_stmt_bind_param($statement, 'sss', $email, $user, $pass);
+        $statement = mysqli_prepare($db, $insert_query); //prepare statement
+        mysqli_stmt_bind_param($statement, 'sss', $user, $email, $pass);
 
         //create password hash
         $pass_hash = hash('sha256', $_POST["pass"]);
@@ -67,7 +64,7 @@
     }
   ?>
   <head>
-    <title>All Models</title>
+    <title>Register</title>
     <link href="./CSS/main.css" rel="stylesheet">
   </head>
 
