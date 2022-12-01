@@ -3,7 +3,8 @@
  require('./data/db.php');
  no_SSL();
 
-
+ $code = trim($_GET['blogID']);
+ @$msg = trim($_GET['message']);
 ?>
 <html>
    <?php
@@ -37,7 +38,7 @@
       $db->close();
       ?>
        <form method="post" action="writeComment.php">
-        <input type="hidden" name="blog_id" value="<?php echo $blog_id; ?>"/>
+        <input type="hidden" name="blogID" value="<?php echo $blog_id; ?>"/>
         <input type="submit" value="Comment on This">
       </form>
     </div>

@@ -6,7 +6,7 @@
   $res = $db->query($query_str);
 
   function format_model_name_as_link($title, $blog_ID, $page) {
-    echo "<a href=\"$page?blog_ID=$blog_ID\">$title</a>";
+    echo "<a href=\"$page?blogID=$blog_ID\">$title</a>";
   }
 ?>
 <html>
