@@ -2,31 +2,44 @@
  include('./assets/functions.php');
  require('./data/db.php');
  no_SSL();
+
+
 ?>
 <html>
-  <?php
-    include('header.php');
+   <?php
+    $query_str = "SELECT *
+                  FROM blogposts
+                  WHERE blog_id = ?";
 
+    $stmt = $db->prepare($query_str);
+    $stmt->bind_param('s', $code);
+    $stmt->execute();
+    $stmt->bind_result($blog_id, $title, $art_id, $content, $contributor_id, $time_created);
+
+    include('header.php');
     $_SESSION["return_to_url"] = $_SERVER['REQUEST_URI'];
   ?>
   <head>
-    <title></title>
+    <title>Blog Post</title>
     <link href="./CSS/main.css" rel="stylesheet">
   </head>
   <body>
     <div class="content">
-      <?php
-        $art_query = "SELECT artpieces.title, artpieces.filename, artpieces.art_id FROM artpieces WHERE art_id=".$_POST["art_id"];
-        $art_result = mysqli_query($db, $art_query);
-        if (!$art_result) die("Database query failed."); //test for error
-
-        if(mysqli_num_rows($art_result) != 0){
-          while($r=mysqli_fetch_assoc($art_result)){
-            echo "<img src=\"./assets/img/".$r["filename"]."\" class=\"display-img\"/><br/><br/>";
-            echo "<i>".$r["title"]."</i><br/>";
-          }
+       <?php
+      if($stmt->fetch()) {
+          echo "<h3>$title</h3>\n";
+          echo "<p><b>by:</b></p>";
+          echo "<p><i>$content</i></p>\n";
+          echo "<p>$time_created</p>\n";
         }
+      $stmt->free_result();
+
+      $db->close();
       ?>
+       <form method="post" action="writeComment.php">
+        <input type="hidden" name="blog_id" value="<?php echo $blog_id; ?>"/>
+        <input type="submit" value="Comment on This">
+      </form>
     </div>
   </body>
 </html>
