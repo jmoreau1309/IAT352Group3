@@ -16,7 +16,7 @@
   <body>
     <div class="content">
       <?php
-        $art_query = "SELECT artpieces.title, artpieces.filename FROM artpieces WHERE $art_id=".$_POST["artID"];
+        $art_query = "SELECT artpieces.title, artpieces.filename, artpieces.art_id FROM artpieces WHERE art_id=".$_POST["art_id"];
         $art_result = mysqli_query($db, $art_query);
         if (!$art_result) die("Database query failed."); //test for error
 
