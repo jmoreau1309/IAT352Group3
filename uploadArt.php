@@ -3,7 +3,13 @@ include('./assets/functions.php');
 no_SSL();
 ?>
 <html>
-  <?php include('header.php'); ?>
+  <?php
+    include('header.php');
+    if(!isset($_SESSION['user'])) header("Location: index.php");
+    $adminid_query = "SELECT admin_id FROM admins WHERE user_id=(SELECT user_id FROM users WHERE username=\"".$_SESSION['user']."\")";
+    $adminid_result = mysqli_query($db, $adminid_query);
+    if(mysqli_num_rows($adminid_result) == 0) header("Location: index.php");
+  ?>
   <head>
     <title>Upload Art Piece</title>
     <link href="./CSS/main.css" rel="stylesheet">
@@ -11,7 +17,28 @@ no_SSL();
   <body>
     <div class="content">
       <?php
-
+        //error message handling
+        if(isset($_GET["msg"])){
+          switch($_GET["msg"]){
+            case "fileempty":
+              echo "Please upload an image.";
+              break;
+            case "titleempty":
+              echo "Please enter a title.";
+              break;
+            case "artempty":
+              echo "Please enter an artist.";
+              break;
+            case "yrsempty":
+              echo "Please enter a start year.";
+              break;
+            case "genreempty":
+              echo "Please enter a genre.";
+              break;
+            default:
+              break;
+          }
+        }
       ?>
       <h1>Upload Image</h1>
       <form method="post" action="processArtUpload.php" enctype="multipart/form-data">
