@@ -47,6 +47,7 @@
                       "&#9<i>".$r["time_created"]."</i></p>";
                   }
                 }
+                else echo "No recent comments!";
               }
             }
             else echo "No recent activity!";

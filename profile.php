@@ -65,23 +65,26 @@
             $admin_result = mysqli_query($db, $admin_query);
             if(mysqli_num_rows($admin_result) != 0) include('./adminProfile.php'); //include admin profile section
             else{
-              //check if qualified to be admin
-              $blog_count_query = "SELECT COUNT(*) FROM blogposts WHERE contributor_id=".$_GET["userID"];
-              $blog_count_result = mysqli_query($db, $blog_count_query);
-              if(mysqli_num_rows($id_result) != 0 && mysqli_fetch_row($blog_count_result)[0] >= 3){ //if more than 3 blog posts
-                //turn user into admin
-                $admin_qual_query = "INSERT INTO admins (user_id) VALUES(?)";
-                $statement = mysqli_prepare($db, $admin_qual_query); //prepare statement
-
-                mysqli_stmt_bind_param($statement, 'i', $userID);
-                $userID = $_GET["userID"];
-
-                mysqli_stmt_execute($statement); //execute statement
-                mysqli_stmt_close($statement); //close statement
-
-                header("Location: sign-in.php?reg=success");
-              }
+              checkAdminQualification($db); //check if qualified to be admin
             }
+          }
+        }
+
+        function checkAdminQualification($db){
+          $blog_count_query = "SELECT COUNT(*) FROM blogposts WHERE contributor_id=".$_GET["userID"];
+          $blog_count_result = mysqli_query($db, $blog_count_query);
+          if(mysqli_num_rows($blog_count_result) != 0 && mysqli_fetch_row($blog_count_result)[0] >= 3){ //if more than 3 blog posts
+            //turn user into admin
+            $admin_qual_query = "INSERT INTO admins (user_id) VALUES(?)";
+            $statement = mysqli_prepare($db, $admin_qual_query); //prepare statement
+
+            mysqli_stmt_bind_param($statement, 'i', $userID);
+            $userID = $_GET["userID"];
+
+            mysqli_stmt_execute($statement); //execute statement
+            mysqli_stmt_close($statement); //close statement
+
+            header("Location: sign-in.php?reg=success");
           }
         }
       ?>
