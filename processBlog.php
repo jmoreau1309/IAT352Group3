@@ -32,7 +32,7 @@
       //redirect to blog post
       $blogid_query = "SELECT blog_id FROM blogposts ORDER BY blog_id DESC LIMIT 1"; //new blog post id is guarenteed to be newest and therefore the largest value
       $blogid_result = mysqli_query($db, $blogid_query);
-      if(mysqli_num_rows($user_result) != 0) header("Location: blogPiece.php?blogID=".mysqli_fetch_row($blogid_result)[0]);
+      if(mysqli_num_rows($blogid_result) != 0) header("Location: blogPiece.php?blogID=".mysqli_fetch_row($blogid_result)[0]);
       else header("Location: blogFeed.php"); //contingency
     ?>
   </body>
