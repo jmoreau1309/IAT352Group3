@@ -25,7 +25,7 @@
 		<div class="content">
 			<h2>Art Pieces</h2>
 			<b> Filter by Genre: </b>
-			<select name="select_genre" id="select_genre" autocomplete="off">
+			<select id="select_genre">
 				<option value="">None</option>
 				<?php
 					$genre_query = "SELECT DISTINCT genre FROM artpieces";
@@ -37,17 +37,20 @@
 					}
 				?>
 			</select>
+			<br/> <br/>
+
+			<!--Pagination elements-->
+			<button id="first-page-btn"> << First Page </button>
+			<button id="prev-page-btn"> < Previous Page </button>
+			<select class="select-page">
+			</select>
+			<button id="next-page-btn"> > Next Page </button>
+			<button id="last-page-btn"> >> Last Page </button>
+
 			<ul class="art-list">
 			<?php
 				//assign entries into array and create for statement that filters by 10s based on GET paremeter
 				//shows default first page with no GET parameter, also works with GET['page']=1;
-				/*
-				while ($row = $res->fetch_assoc()) {
-					echo "<li>";
-					format_model_name_as_link($row['title'], $row['art_id'],"artDetails.php");
-					echo "</li>\n";
-				};
-				*/
 			?>
 			</ul>
 			<?php
