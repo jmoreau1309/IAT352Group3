@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   filterGenres($('#select_genre').val());
 
   // filter on select change
@@ -7,6 +6,10 @@ $(document).ready(function() {
     filterGenres($(this).val());
   });
 });
+
+window.onload = function(){
+  $('select').prop('selectedIndex', 0);
+};
 
 function filterGenres(value){
   console.log(value);
