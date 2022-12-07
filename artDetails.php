@@ -31,7 +31,7 @@ $code = trim($_GET['artID']);
           echo "<img src=\"./assets/img/$filename\" class=\"display-img\"/>";
           echo "<h3>$title</h3>\n";
           echo "<p><b>by:</b> $artist, $yearRangeStart-$yearRangeEnd.</p>";
-          echo "<p><b>Genre: </b>$genre</p>\n";
+          echo "<p><b>Genre: </b>".formatGenreInput($genre)."</p>\n";
           echo "<p><b>Description:</b> $description</p>\n";
         }
       $stmt->free_result();

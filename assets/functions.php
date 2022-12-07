@@ -83,4 +83,8 @@ function sanitizeInput($var) {
     $var = strip_tags($var);
     return $var;
 }
+
+function formatGenreInput($str){
+	return ucwords(implode(" ", explode("_", $str)));
+}
 ?>
