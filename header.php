@@ -8,8 +8,8 @@
     <a class="button" href="profile.php">Profile</a>
   </div>
 		<?php
-		";if (isset($_SESSION['user']))
-			echo "<a class=\"nav\"  href=\"sign-out.php\">Sign out</a> <p class=\"user-text\"> &nbsp&nbsp Welcome, ".$_SESSION['user']."!</p>
+		if (isset($_SESSION['user']))
+			echo "<a class=\"nav\"  href=\"sign-out.php\">Sign out</a> <p class=\"user-text\"> &nbsp&nbsp Welcome, ".$_SESSION['user']."!</p>";
 		else
 			echo "<a class=\"nav\" href=\"sign-in.php\">Sign In</a>";
 		?>
