@@ -21,10 +21,29 @@
       else header("Location: sign-in.php"); //shouldn't happen, but contingency in case user isn't valid
 
       //insert parameters
-      $title = $_POST["title"];
-      $artID = $_POST["artID"];
-      $content = $_POST["content"];
+      if(isset($_POST["artID"])) $artID = $_POST["artID"];
+      else{
+        header("Location: showArt.php"); //case shouldn't happen, but contingency
+        exit();
+      }
+
+      if(!empty($_POST["title"])) $title = $_POST["title"];
+      else{
+        header("Location: writeBlog.php?msg=titleempty&artID=".$_POST["artID"]);
+        exit();
+      }
+
+      if(!empty($_POST["content"])) $content = $_POST["content"];
+      else{
+        header("Location: writeBlog.php?msg=contentempty&artID=".$_POST["artID"]);
+        exit();
+      }
+
       if(isset($userID)) $contributorID = $userID;
+      else {
+        header("Location: sign-in.php"); //shouldn't happen, but contingency
+        exit();
+      }
 
       mysqli_stmt_execute($statement); //execute statement
       mysqli_stmt_close($statement); //close statement

@@ -7,7 +7,8 @@
   <?php
     include('header.php');
 
-    if(!isset($_POST["artID"])) header("Location: showArt.php"); //return to show art page if user access this page without a piece to blog about
+    if(isset($_GET["artID"])) $_POST["artID"] = $_GET["artID"];
+    else if(!isset($_POST["artID"])) header("Location: showArt.php"); //return to show art page if user access this page without a piece to blog about
     if(!isset($_SESSION["user"])) header("Location: sign-in.php"); //redirect to sign in if user isn't logged in
   ?>
   <head>
@@ -16,7 +17,21 @@
   </head>
   <body>
     <div class="content">
-      <!--placeholder for form to fill out-->
+      <?php
+        //error message handling
+        if(isset($_GET["msg"])){
+          switch($_GET["msg"]){
+            case "titleempty":
+              echo "Please enter a title.";
+              break;
+            case "contentempty":
+              echo "Please enter blog content.";
+              break;
+            default:
+              break;
+          }
+        }
+      ?>
       <h1> Write Blog </h1>
       <h2>Your Selected Art Piece:</h2>
 
