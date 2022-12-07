@@ -42,7 +42,7 @@
 			<!--Pagination elements-->
 			<button id="first-page-btn"> << First Page </button>
 			<button id="prev-page-btn"> < Previous Page </button>
-			<select class="select-page">
+			<select id="select-page">
 			</select>
 			<button id="next-page-btn"> > Next Page </button>
 			<button id="last-page-btn"> >> Last Page </button>

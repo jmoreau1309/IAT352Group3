@@ -8,8 +8,33 @@ window.onload = function(){
   });
 
   //update on pagination change
-  $('.select-page').on("change", function(){
+  $('#select-page').on("change", function(){
     updatePagination(dataResult);
+  });
+
+  $('#first-page-btn').on("click", function(){
+    document.getElementById('select-page').selectedIndex = 0;
+    updatePagination(dataResult);
+    console.log(document.getElementById('select-page').selectedIndex);
+  });
+
+  $('#prev-page-btn').on("click", function(){
+    if(document.getElementById('select-page').selectedIndex > 0) document.getElementById('select-page').selectedIndex--;
+    updatePagination(dataResult);
+    console.log(document.getElementById('select-page').selectedIndex);
+  });
+
+  $('#next-page-btn').on("click", function(){
+    if(document.getElementById('select-page').selectedIndex < (dataResult.length/10)-1 && dataResult.length/10 > 0)
+      document.getElementById('select-page').selectedIndex++;
+    updatePagination(dataResult);
+    console.log(document.getElementById('select-page').selectedIndex);
+  });
+
+  $('#last-page-btn').on("click", function(){
+    if(dataResult.length/10 > 0) document.getElementById('select-page').selectedIndex = dataResult.length/10;
+    updatePagination(dataResult);
+    console.log(document.getElementById('select-page').selectedIndex);
   });
 };
 
@@ -27,35 +52,29 @@ function filterGenres(value){
       var result = JSON.parse(data);
 
       $(".art-list").empty(); //remove all current elements
-      $(".select-page").empty();
+      $("#select-page").empty();
 
       for(let i = 0; i < result.length/10; i++){ //populate pagination dropdown
-        $(".select-page").append(`
+        $("#select-page").append(`
           <option>`+(i+1)+`</option>
         `);
       }
       updatePagination(result);
       dataResult = result;
-      /*
-      result.forEach(element => {
-          $(".art-list").append(`
-          <li>
-              <a href=\"artdetails.php?artID=${element.art_id}\">${element.title}</a>
-          </li>
-          `);
-      });
-      */
   });
 }
 
 function updatePagination(result){
   $(".art-list").empty(); //remove all current elements
-  var pageLimitValue = ($('.select-page').val()-1)*10;
+  var pageLimitValue = ($('#select-page').val()-1)*10;
   for(let i = pageLimitValue; i < pageLimitValue+10; i++){ //populate list
-    $(".art-list").append(`
-      <li>
-          <a href=\"artdetails.php?artID=${result[i].art_id}\">${result[i].title}</a>
-      </li>
-    `);
+    if(!(result[i] === undefined)){
+      $(".art-list").append(`
+        <li>
+            <a href=\"artdetails.php?artID=${result[i].art_id}\">${result[i].title}</a>
+        </li>
+      `);
+    }
   }
+  dataResult = result;
 }
