@@ -5,7 +5,10 @@
   <div class="header-right">
     <a class="button" href="showArt.php">Main Art Feed</a>
     <a class="button" href="blogFeed.php">Blog Feed</a>
-    <a class="button" href="profile.php">Profile</a>
+    <?php
+      if(isset($_SESSION['user'])) echo "<a class=\"button\" href=\"profile.php?username=".$_SESSION['user']."\">Profile</a>";
+      else echo "<a class=\"button\" href=\"profile.php\">Profile</a>";
+    ?>
   </div>
 		<?php
 		if (isset($_SESSION['user']))

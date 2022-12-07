@@ -35,6 +35,7 @@
             if(mysqli_num_rows($sess_blogs_result) != 0) {
               while($r= mysqli_fetch_assoc($sess_blogs_result)){
                 echo "<h3><a href=\"blogPiece.php?blogID=".$r['blog_id']."\">".$r['title']."</a></h3>";
+
                 //query for 3 latest comments within blog post
                 $comments_query = "SELECT comments.blog_id, comments.content, comments.time_created, users.username
                   FROM comments INNER JOIN users ON users.user_id = comments.user_id WHERE blog_id=".$r['blog_id']." LIMIT 3";

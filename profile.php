@@ -13,13 +13,17 @@
   </head>
   <body>
     <?php
-      //redirect to index if no set user ID
-      if(!isset($_GET["userID"])) header("Location: index.php");
+      if(isset($_GET["username"])){
+        $userid_query = "SELECT user_id FROM users WHERE username=\"".$_GET["username"]."\"";
+        $userid_result = mysqli_query($db, $userid_query);
+        if(mysqli_num_rows($userid_result) != 0) header("Location: profile.php?userID=".mysqli_fetch_assoc($userid_result)['user_id']);
+        else header("Location: index.php"); //contingency, shouldnt happen
+      }
+      else if(!isset($_GET["userID"])) header("Location: index.php"); //redirect to index if no set user ID
 
       $user_query = "SELECT username FROM users WHERE user_id=\"".$_GET["userID"]."\"";
       $user_result = mysqli_query($db, $user_query);
       if(mysqli_num_rows($user_result) != 0) $username = mysqli_fetch_assoc($user_result)["username"];
-      else header("Location: index.php") //contingency
     ?>
     <div class="content">
       <h1>User Profile for <?php echo $username; ?></h1>
