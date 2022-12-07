@@ -10,14 +10,15 @@
    <?php
     $query_str = "SELECT blogposts.blog_id, blogposts.title, blogposts.art_id,
                   blogposts.content, blogposts.contributor_id, blogposts.time_created,
-                  users.username
-                  FROM blogposts INNER JOIN users ON blogposts.contributor_id=users.user_id
+                  users.username, artpieces.filename FROM blogposts
+                  INNER JOIN users ON blogposts.contributor_id=users.user_id
+                  INNER JOIN artpieces ON blogposts.art_id=artpieces.art_id
                   WHERE blog_id = ?";
 
     $stmt = $db->prepare($query_str);
     $stmt->bind_param('s', $code);
     $stmt->execute();
-    $stmt->bind_result($blog_id, $title, $art_id, $content, $contributor_id, $time_created, $contributor);
+    $stmt->bind_result($blog_id, $title, $art_id, $content, $contributor_id, $time_created, $contributor, $filename);
 
     include('header.php');
     $_SESSION["return_to_url"] = $_SERVER['REQUEST_URI'];
@@ -32,6 +33,7 @@
       if($stmt->fetch()) {
           echo "<h2>$title</h2>\n";
           echo "<p><b>by: $contributor</b></p>";
+          echo "<img src=\"./assets/img/$filename\" class=\"display-img\"/>";
           echo "<p><i>$content</i></p>\n";
           echo "<p>$time_created</p>\n";
         }

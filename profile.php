@@ -34,7 +34,7 @@
         $blogs_result = mysqli_query($db, $blogs_query);
         if(mysqli_num_rows($blogs_result) != 0) {
           while($r= mysqli_fetch_assoc($blogs_result)){
-            echo "<h3><a href=\"blogPiece.php?id=".$r["blog_id"]."\">".$r["title"]."</a></h3>";
+            echo "<h3><a href=\"blogPiece.php?blogID=".$r["blog_id"]."\">".$r["title"]."</a></h3>";
           }
         }
         else echo "This user hasn't created any blog posts."
@@ -48,11 +48,42 @@
           while($r= mysqli_fetch_assoc($comments_result)){
             $comment_blog_query = "SELECT title FROM blogposts WHERE blog_id=\"".$r["blog_id"]."\"";
             $comment_blog_result = mysqli_query($db, $comment_blog_query);
-            echo "<h3><a href=\"blogPiece.php?id=".$r["blog_id"]."\">".mysqli_fetch_row($comment_blog_result)[0]."</a></h3>";
+            echo "<h3><a href=\"blogPiece.php?blogID=".$r["blog_id"]."\">".mysqli_fetch_row($comment_blog_result)[0]."</a></h3>";
             echo "<p style=\"margin-left: 1em\"> - ".$r["content"]."&#9<i>(Created: ".$r["time_created"].")</i></p>";
           }
         }
         else echo "This user hasn't created any comments."
+      ?>
+      <?php
+        //admin corner
+        //check if profile page belongs to logged in user
+        $id_query = "SELECT user_id FROM users WHERE username=\"".$_SESSION['user']."\"";
+        $id_result = mysqli_query($db, $id_query);
+        if(mysqli_num_rows($id_result) != 0) {
+          if($_GET["userID"] == mysqli_fetch_assoc($id_result)['user_id']){
+            $admin_query = "SELECT admin_id FROM admins WHERE user_id=".$_GET["userID"]; //check if user already has an admin id
+            $admin_result = mysqli_query($db, $admin_query);
+            if(mysqli_num_rows($admin_result) != 0) include('./adminProfile.php'); //include admin profile section
+            else{
+              //check if qualified to be admin
+              $blog_count_query = "SELECT COUNT(*) FROM blogposts WHERE contributor_id=".$_GET["userID"];
+              $blog_count_result = mysqli_query($db, $blog_count_query);
+              if(mysqli_num_rows($id_result) != 0 && mysqli_fetch_row($blog_count_result)[0] >= 3){ //if more than 3 blog posts
+                //turn user into admin
+                $admin_qual_query = "INSERT INTO admins (user_id) VALUES(?)";
+                $statement = mysqli_prepare($db, $admin_qual_query); //prepare statement
+
+                mysqli_stmt_bind_param($statement, 'i', $userID);
+                $userID = $_GET["userID"];
+
+                mysqli_stmt_execute($statement); //execute statement
+                mysqli_stmt_close($statement); //close statement
+
+                header("Location: sign-in.php?reg=success");
+              }
+            }
+          }
+        }
       ?>
     </div>
   </body>
