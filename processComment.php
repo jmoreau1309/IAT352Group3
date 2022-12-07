@@ -21,8 +21,17 @@
       else header("Location: sign-in.php"); //shouldn't happen, but contingency in case user isn't valid
 
       //insert parameters
-      $blogID = $_POST["blogID"];
-      $content = $_POST["content"];
+      if(isset($_POST["blogID"])) $blogID = $_POST["blogID"];
+      else{
+        header("Location: blogFeed.php"); //case shouldn't happen, but contingency
+        exit();
+      }
+
+      if(isset($_POST["content"])) $content = $_POST["content"];
+      else{
+        header("Location: writeComment.php?msg=contentempty&blogID=".$_POST["blogID"]);
+        exit();
+      }
 
       mysqli_stmt_execute($statement); //execute statement
       mysqli_stmt_close($statement); //close statement

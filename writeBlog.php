@@ -7,7 +7,7 @@
   <?php
     include('header.php');
 
-    if(isset($_GET["artID"])) $_POST["artID"] = $_GET["artID"];
+    if(isset($_GET["artID"])) $_POST["artID"] = $_GET["artID"]; //alt solution for redirect
     else if(!isset($_POST["artID"])) header("Location: showArt.php"); //return to show art page if user access this page without a piece to blog about
     if(!isset($_SESSION["user"])) header("Location: sign-in.php"); //redirect to sign in if user isn't logged in
   ?>
