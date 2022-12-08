@@ -41,17 +41,13 @@
 
 			<!--Pagination elements-->
 			<button id="first-page-btn"> << First Page </button>
-			<a class="button" id = "previous-page-btn"> < Previous Page</a>
+			<a class="button" id = "prev-page-btn"> < Previous Page</a>
 			<select id="select-page">
 			</select>
 			<button id="next-page-btn"> > Next Page </button>
 			<button id="last-page-btn"> >> Last Page </button>
 
 			<ul class="art-list">
-			<?php
-				//assign entries into array and create for statement that filters by 10s based on GET paremeter
-				//shows default first page with no GET parameter, also works with GET['page']=1;
-			?>
 			</ul>
 			<?php
 				$res->free_result();
