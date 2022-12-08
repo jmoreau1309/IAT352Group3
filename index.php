@@ -26,7 +26,7 @@
           }
 
           if (isset($_SESSION['user'])){
-            echo "<h2 class=\"border-bottom border-light-blue padding-16\">Your Latest Activity</h2>";
+            echo "<h2>Your Latest Activity</h2>";
             //query 2 most recent blogs
             $sess_blogs_query = "SELECT title, blog_id FROM blogposts WHERE contributor_id=
             (SELECT user_id FROM users where username=\"".$_SESSION['user']."\")

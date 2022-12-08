@@ -296,17 +296,15 @@ a{
 }
 
 .btn,.button{
-    border:none;
+    border:1px solid #000000;
     display:inline-block;
     padding:8px 16px;
     vertical-align:middle;
     overflow:hidden;
     text-decoration:none;
     color:ADD8E6;
-    background-color:inherit;
     text-align:center;
-    cursor:pointer;
-    white-space:nowrap
+    cursor:pointer
 }
 
 .btn:hover{
@@ -600,16 +598,8 @@ a{
     width:auto;
     background-color:#fff;
     padding:8px 12px;
-    border-left:4px solid #4CAF50;
+    border-left:4px solid #add8e6;
     word-wrap:break-word
-}
-
-.codespan{
-    color:crimson;
-    background-color:#f1f1f1;
-    padding-left:4px;
-    padding-right:4px;
-    font-size:110%
 }
 
 .opacity-max{
@@ -637,11 +627,11 @@ a{
 }
 
 .border{
-    border:1px solid #ffbcd2!important
+    border:1px solid #add8e6!important
 }
 
 .border-bottom{
-    border-bottom:1px solid #ffbcd2!important
+    border-bottom:1px solid #add8e6!important
 }
 
 .section,.code{
