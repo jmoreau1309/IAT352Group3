@@ -81,7 +81,7 @@
         Confirm Password:  <br/>
         <input type="password" name="check_pass" value=""/><br/><br/>
         <?php if(isset($msg)) echo $msg."<br/>"; //error message?><br/><br/>
-        <input type="submit" value="Register">
+        <input class = "button" type="submit" value="Register">
       </form>
     </div>
   </body>

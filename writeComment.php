@@ -49,7 +49,7 @@
         <input type="hidden" name="blogID" value="<?php echo $_POST["blogID"]; //art piece id ?>"/>
         <h2 style="margin-bottom: 0;">Content:</h2>
         <textarea name="content" cols="80" rows="10" placeholder="Type out your comment here!"></textarea><br/><br/>
-        <input type="submit" value="Submit Comment"/>
+        <input class = "button" type="submit" value="Submit Comment"/>
       </form>
     </div>
   </body>

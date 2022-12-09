@@ -40,7 +40,7 @@ $code = trim($_GET['artID']);
       ?>
       <form method="post" action="writeBlog.php">
         <input type="hidden" name="artID" value="<?php echo $art_id; ?>"/>
-        <input type="submit" value="Blog About This Piece!">
+        <input class = "button" type="submit" value="Blog About This Piece!">
       </form>
     </div>
   </body>

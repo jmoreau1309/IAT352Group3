@@ -61,7 +61,7 @@ no_SSL();
         <h2 style="margin-bottom: 0;">Description:</h2>
         <textarea name="description" cols="80" rows="10" placeholder="Type out your description here!"></textarea><br/><br/>
 
-        <input type="submit" value="Submit Art Piece"/>
+        <input class = "button" type="submit" value="Submit Art Piece"/>
       </form>
     </div>
   </body>

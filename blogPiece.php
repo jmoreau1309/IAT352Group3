@@ -41,7 +41,7 @@
       ?>
        <form method="post" action="writeComment.php">
         <input type="hidden" name="blogID" value="<?php echo $blog_id; ?>"/>
-        <input type="submit" value="Comment on This">
+        <input class = "button" type="submit" value="Comment on This">
       </form>
 
       <h3>Comments:</h3>

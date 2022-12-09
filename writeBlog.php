@@ -54,7 +54,7 @@
         <input type="text" name="title" value=""/>
         <h2 style="margin-bottom: 0;">Content:</h2>
         <textarea name="content" cols="80" rows="10" placeholder="Type out your blog content here!"></textarea><br/><br/>
-        <input type="submit" value="Submit Blog"/>
+        <input class = "button" type="submit" value="Submit Blog"/>
       </form>
     </div>
   </body>

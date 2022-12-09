@@ -55,7 +55,7 @@
         <input type="text" name="user" value=""/><br/><br/>
         Password:  <br/>
         <input type="password" name="pass" value=""/><br/><br/>
-        <input type="submit" value="Log In">
+        <input class = "button" type="submit" value="Log In">
       </form>
       <br/>
       Not a user? Register <a href="register.php">Here.</a>

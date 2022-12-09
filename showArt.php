@@ -40,12 +40,12 @@
 			<br/> <br/>
 
 			<!--Pagination elements-->
-			<button id="first-page-btn"> << First Page </button>
-			<a class="button" id = "prev-page-btn"> < Previous Page</a>
+			<a class="button" id = "previous-page-btn"> < Previous Page</a>
+			<a class="button" id = "first-page-btn"> << First Page</a>
 			<select id="select-page">
 			</select>
-			<button id="next-page-btn"> > Next Page </button>
-			<button id="last-page-btn"> >> Last Page </button>
+			<a class="button" id = "next-page-btn"> > Next Page</a>
+			<a class="button" id = "last-page-btn"> >> Last Page</a>
 
 			<ul class="art-list">
 			</ul>
