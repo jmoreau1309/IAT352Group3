@@ -21,7 +21,15 @@
           $blogs_result = mysqli_query($db, $blogs_query);
           if(mysqli_num_rows($blogs_result) != 0) {
             while($r= mysqli_fetch_assoc($blogs_result)){
+              ?>
+               <div class="col l4 m6 margin-bottom">
+                <div class="display-container">
+              <?php
               echo "<h3><a href=\"blogPiece.php?blogID=".$r['blog_id']."\">".$r['title']."</a></h3>";
+              ?>
+            </div>
+          </div>
+          <?php
             }
           }
 
@@ -42,9 +50,17 @@
                 $comments_result = mysqli_query($db, $comments_query);
                 if(mysqli_num_rows($comments_result) != 0) { //display comments
                   while($r= mysqli_fetch_assoc($comments_result)){
+                    ?>
+                    <div class="col l4 m6 margin-bottom">
+                    <div class="display-container">
+                    <?php
                     echo "<p style=\"margin-left: 1em; margin-bottom: 0.25em\"><b>".$r["username"]."</b>".
                       " writes: <br/> - ".$r["content"]."<br/>".
                       "&#9<i>".$r["time_created"]."</i></p>";
+                      ?>
+                    </div>
+                  </div>
+                      <?php
                   }
                 }
                 else echo "No recent comments!";

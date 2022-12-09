@@ -34,11 +34,20 @@
         $blogs_result = mysqli_query($db, $blogs_query);
         if(mysqli_num_rows($blogs_result) != 0) {
           while($r= mysqli_fetch_assoc($blogs_result)){
+            ?>
+            <div class="col l4 m6 margin-bottom">
+            <div class="display-container">
+            <?php
             echo "<h3><a href=\"blogPiece.php?blogID=".$r["blog_id"]."\">".$r["title"]."</a></h3>";
+            ?>
+          </div>
+        </div>
+            <?php
           }
         }
         else echo "This user hasn't created any blog posts."
       ?>
+      <div class="row-padding">
       <h2>Recent Comments:</h2>
       <?php
         //query up to 10 recent comments
@@ -48,12 +57,15 @@
           while($r= mysqli_fetch_assoc($comments_result)){
             $comment_blog_query = "SELECT title FROM blogposts WHERE blog_id=\"".$r["blog_id"]."\"";
             $comment_blog_result = mysqli_query($db, $comment_blog_query);
+            ?>
+            <?php
             echo "<h3><a href=\"blogPiece.php?blogID=".$r["blog_id"]."\">".mysqli_fetch_row($comment_blog_result)[0]."</a></h3>";
             echo "<p style=\"margin-left: 1em\"> - ".$r["content"]."&#9<i>(Created: ".$r["time_created"].")</i></p>";
           }
         }
         else echo "This user hasn't created any comments."
       ?>
+  </div>
       <?php
         //admin corner
         //check if profile page belongs to logged in user

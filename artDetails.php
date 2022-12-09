@@ -28,7 +28,17 @@ $code = trim($_GET['artID']);
     <div class="content">
       <?php
       if($stmt->fetch()) {
+          ?>
+          <div class="col l6 m6 margin-bottom">
+            <div class="display-container">
+      <?php
           echo "<img src=\"./assets/img/$filename\" class=\"display-img\"/>";
+          ?>
+        </div>
+      </div>
+      <div class="col l4 m6 margin-bottom">
+      <div class="display-container">
+      <?php
           echo "<h3>$title</h3>\n";
           echo "<p><b>by:</b> $artist, $yearRangeStart-$yearRangeEnd.</p>";
           echo "<p><b>Genre: </b>".formatGenreInput($genre)."</p>\n";
@@ -38,6 +48,8 @@ $code = trim($_GET['artID']);
 
       $db->close();
       ?>
+    </div>
+  </div>
       <form method="post" action="writeBlog.php">
         <input type="hidden" name="artID" value="<?php echo $art_id; ?>"/>
         <input class = "button" type="submit" value="Blog About This Piece!">

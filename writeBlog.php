@@ -42,20 +42,29 @@
 
         if(mysqli_num_rows($art_result) != 0){
           while($r=mysqli_fetch_assoc($art_result)){
+            ?>
+            <div class="col l6 m6 margin-bottom">
+            <div class="display-container">
+            <?php
             echo "<img src=\"./assets/img/".$r["filename"]."\" class=\"display-img\"/><br/><br/>";
             echo "<i>".$r["title"]."</i><br/>";
           }
         }
       ?>
-
+      </div>
+      </div>
+      <div class="col 14 m6 margin-bottom">
+      <div class="display-container">
       <form method="post" action="processBlog.php">
         <input type="hidden" name="artID" value="<?php echo $_POST["artID"]; //art piece id ?>"/>
         <h2 style="margin-bottom: 0;">Title:</h2>
         <input type="text" name="title" value=""/>
         <h2 style="margin-bottom: 0;">Content:</h2>
-        <textarea name="content" cols="80" rows="10" placeholder="Type out your blog content here!"></textarea><br/><br/>
+        <textarea name="content" cols="40" rows="10" placeholder="Type out your blog content here!"></textarea><br/><br/>
         <input class = "button" type="submit" value="Submit Blog"/>
       </form>
     </div>
+  </div>
+</div>
   </body>
 </html>

@@ -25,7 +25,7 @@
 		<div class="content">
 			<h2>Art Pieces</h2>
 			<b> Filter by Genre: </b>
-			<select id="select_genre">
+			<select class = "button" id="select_genre">
 				<option value="">None</option>
 				<?php
 					$genre_query = "SELECT DISTINCT genre FROM artpieces";
@@ -42,7 +42,7 @@
 			<!--Pagination elements-->
 			<a class="button" id = "previous-page-btn"> < Previous Page</a>
 			<a class="button" id = "first-page-btn"> << First Page</a>
-			<select id="select-page">
+			<select class = "button" id="select-page">
 			</select>
 			<a class="button" id = "next-page-btn"> > Next Page</a>
 			<a class="button" id = "last-page-btn"> >> Last Page</a>
