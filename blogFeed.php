@@ -2,13 +2,14 @@
   include('./assets/functions.php');
   no_SSL();
 
-  $query_str = "SELECT blogposts.title, blogposts.content, blogposts.time_created, blogposts.blog_id, artpieces.filename FROM blogposts, artpieces";
+  $query_str = "SELECT blogposts.blog_id, blogposts.title, blogposts.content, blogposts.time_created, artpieces.filename FROM blogposts
+    INNER JOIN artpieces ON blogposts.art_id = artpieces.art_id";
   $res = $db->query($query_str);
 
     $stmt = $db->prepare($query_str);
 
     $stmt->execute();
-    $stmt->bind_result($blog_id, $title, $content, $filename, $time_created);
+    $stmt->bind_result($blog_id, $title, $content, $time_created, $filename);
 
   function format_model_name_as_link($title, $blog_ID, $page) {
     echo "<a href=\"$page?blogID=$blog_ID\">$title</a>";
@@ -31,7 +32,7 @@
         echo "<ul>";
         while ($row = $res->fetch_assoc()) {
           echo "<li>";
-          echo "<img src=\"./assets/img/$filename\" class=\"display-img\"/>";
+          echo "<img src=\"./assets/img/".$row['filename']."\" class=\"display-img\"/>";
           format_model_name_as_link($row['title'], $row['blog_id'],"blogPiece.php");
           echo "</li>\n";
         };
