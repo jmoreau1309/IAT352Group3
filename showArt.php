@@ -2,7 +2,7 @@
 	include('./assets/functions.php');
 	no_SSL();
 
-	$query_str = "SELECT title, art_id, artist, yearRangeStart, yearRangeEnd FROM artpieces";
+	$query_str = "SELECT title, art_id, artist, yearRangeStart, yearRangeEnd, filename FROM artpieces";
 	$res = $db->query($query_str);
 
 	function format_model_name_as_link($title, $artID, $page) {
