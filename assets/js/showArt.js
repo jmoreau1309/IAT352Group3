@@ -70,6 +70,7 @@ function updatePagination(result){
   for(let i = pageLimitValue; i < pageLimitValue+10; i++){ //populate list
     if(!(result[i] === undefined)){
       $(".art-list").append(`
+        
         <li>
             <img src=\"./assets/img/${result[i].filename}\" class=\"display-img\"/>
             <a href=\"artdetails.php?artID=${result[i].art_id}\">${result[i].title}</a>

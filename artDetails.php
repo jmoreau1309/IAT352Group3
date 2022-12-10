@@ -32,7 +32,7 @@ $code = trim($_GET['artID']);
           <div class="col l6 m6 margin-bottom">
             <div class="display-container">
       <?php
-          echo "<img src=\"./assets/img/$filename\" class=\"display-img\"/>";
+          echo "<img src=\"./assets/img/$filename\" class=\"display-img\" />";
           ?>
         </div>
       </div>

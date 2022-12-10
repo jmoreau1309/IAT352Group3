@@ -31,8 +31,21 @@
 
         echo "<ul>";
         while ($row = $res->fetch_assoc()) {
-          echo "<li>";
+          ?>
+          <div class="row-padding">
+          <div class="col l6 m6 margin-bottom">
+          <div class="container padding-32" id="projects">
+          <h3 class="border-bottom border-light-pink padding"></h3>
+        <h2>
+         <?php
           echo "<img src=\"./assets/img/".$row['filename']."\" class=\"display-img\"/>";
+          ?>
+          </h2>
+          </div>
+        </div>
+        </div>
+
+         <?php
           format_model_name_as_link($row['title'], $row['blog_id'],"blogPiece.php");
           echo "</li>\n";
         };
