@@ -27,6 +27,7 @@
     ?>
     <div class="content">
       <h1>User Profile for <?php echo $username; ?></h1>
+      <a class="button" href="editProfile.php">Change Account Details</a>
       <h2>Blog Posts:</h2>
       <?php
         //query blog posts

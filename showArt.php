@@ -40,7 +40,7 @@
 			<br/> <br/>
 
 			<!--Pagination elements-->
-			<a class="button" id = "previous-page-btn"> < Previous Page</a>
+			<a class="button" id = "prev-page-btn"> < Previous Page</a>
 			<a class="button" id = "first-page-btn"> << First Page</a>
 			<select class = "button" id="select-page">
 			</select>
